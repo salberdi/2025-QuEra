@@ -14,17 +14,22 @@ def answer_1a():
     return state
     # move.Execute(state)
 
+@move.vmove
 def answer_1b():
     return 0
 
+@move.vmove
 def answer_2():
     return 0
 
+@move.vmove
 def answer_3():
     return 0
 
+@move.vmove
 def answer_4():
     return 0
 
+@move.vmove
 def answer_5():
     return 0
