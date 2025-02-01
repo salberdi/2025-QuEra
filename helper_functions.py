@@ -30,3 +30,21 @@ def global_RX(state:move.core.AtomState,angle,target_indices):
 def local_RX(state:move.core.AtomState,angle,target_indices):
     state = move.LocalXY(atom_state=state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
     return state
+
+@move.vmove()
+def local_T(state:move.core.atomState,indices):
+    state = mode.LocalRz(atom_state=state,phi=pi/4,indices=indices)
+    return state
+
+@move.vmove()
+def global_T(state:move.core.atomState):
+    state = mode.GlobalRz(atom_state=state,phi=pi/4)
+
+@move.vmove()
+def local_S(state:move.core.atomState,indices):
+    state = mode.LocalRz(atom_state=state,phi=pi/2,indices=indices)
+    return state
+
+@move.vmove()
+def global_S(state:move.core.atomState):
+    state = mode.GlobalRz(atom_state=state,phi=pi/2)
