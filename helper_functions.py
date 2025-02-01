@@ -16,9 +16,9 @@ def local_H(atom_state:move.core.AtomState,indices):
 
 @move.vmove()
 def local_CX(atom_state:move.core.AtomState,target_indices):
-    state = local_H(atom_state=atom_state,indices=[target_indices])
+    state = local_H(atom_state=atom_state,indices=target_indices)
     state = move.GlobalCZ(atom_state=state)
-    state = local_H(atom_state=state,indices=[target_indices])
+    state = local_H(atom_state=state,indices=target_indices)
     return state
 
 @move.vmove()
@@ -54,5 +54,5 @@ def global_S(atom_state:move.core.AtomState):
 @move.vmove()
 def local_HTH(atom_state:move.core.AtomState,indices, dag):
     theta = pi/4 * (-1**dag)
-    state = global_RX(atom_state=atom_state,angle=theta)
+    state = local_RX(atom_state=atom_state,angle=theta,indices=indices)
     return state
