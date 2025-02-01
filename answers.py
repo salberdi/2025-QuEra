@@ -1,7 +1,7 @@
 from bloqade import move
 from helper_functions import *
 
-@move.vmove
+@move.vmove()
 def answer_1a():
     q = move.NewQubitRegister(3)
 
@@ -9,10 +9,10 @@ def answer_1a():
     state.gate[[0,1,3]] = move.Move(state.storage[[0,1,2]])
     state = move.GlobalCZ(atom_state=state)
     state.gate[[2]] = move.Move(state.gate[[1]])
-    state = local_CX(atom_state=state,target_indices=[2])
+    state = local_CX(state=state,target_indices=[2])
     return state
 
-@move.vmove
+@move.vmove()
 def answer_1b():
     q = move.NewQubitRegister(3)
 
@@ -20,22 +20,22 @@ def answer_1b():
     state.gate[[0,1,3]] = move.Move(state.storage[[0,1,2]])
     state = move.GlobalCZ(atom_state=state)
     state.gate[[2]] = move.Move(state.gate[[1]])
-    state = local_H(state=state,target_indices=[2])
+    state = local_H(state=state,indices=[2])
     state.storage[[0,1,2]] = move.Move(state.gate[[0,2,3]])
     return state
 
-@move.vmove
+@move.vmove()
 def answer_2():
-    
+    return 0
 
-@move.vmove
+@move.vmove()
 def answer_3():
     return 0
 
-@move.vmove
+@move.vmove()
 def answer_4():
     return 0
 
-@move.vmove
+@move.vmove()
 def answer_5():
     return 0
