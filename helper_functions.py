@@ -32,7 +32,6 @@ def local_HTH(atom_state:move.core.AtomState,indices, pos):
     if not pos:
         theta *= -1
     state = global_RX(state, theta)
-
     return state
 
 @move.vmove()
