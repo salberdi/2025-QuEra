@@ -9,8 +9,7 @@ def answer_1a():
     state.gate[[0,1,3]] = move.Move(state.storage[[0,1,2]])
     state = move.GlobalCZ(atom_state=state)
     state.gate[[2]] = move.Move(state.gate[[1]])
-    state = local_H(atom_state=state,target_indices=[2])
-    state.storage[[0,1,2]] = move.Move(state.gate[[0,2,3]])
+    state = local_CX(atom_state=state,target_indices=[2])
     return state
 
 @move.vmove
