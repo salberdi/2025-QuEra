@@ -7,8 +7,9 @@ def global_H(state:move.core.AtomState):
     return state
 
 def local_H(state:move.core.AtomState, indices):
-    state = move.LocalXY(atom_state=state,x_exponent=-pi/2,axis_phase_exponent=1.0,indices=indices)
-    state = move.LocalXY(atom_state=state,x_exponent=pi,axis_phase_exponent=0.0,indices=indices)
+    state = move.GlobalXY(atom_state=state,x_exponent=-pi/4,axis_phase_exponent=pi/2,indices=indices)
+    state = move.LocalZ(atom_state=state,x_exponent=pi)
+    state = move.GlobalXY(atom_state=state,x_exponent=pi/4,axis_phase_exponent=pi/2,indices=indices)
     return state
 
 def local_CX(state:move.core.AtomState,target_indices):
