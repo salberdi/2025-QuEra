@@ -16,3 +16,11 @@ def local_CX(state:move.core.AtomState,target_indices):
     state = move.GlobalCZ(atom_state=state)
     state = local_H(atom_state=state,indices=[target_indices])
     return state
+
+def global_RX(state:move.core.AtomState,angle,target_indices):
+    state = move.GlobalXY(atom_state=state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
+    return state
+
+def local_RX(state:move.core.AtomState,angle,target_indices):
+    state = move.LocalXY(atom_state=state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
+    return state
