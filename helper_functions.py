@@ -52,9 +52,7 @@ def global_S(state:move.core.AtomState):
     return state
 
 @move.vmove()
-def local_HTH(atom_state:move.core.AtomState,indices, pos):
-    theta = pi/4
-    if not pos:
-        theta *= -1
-    state = global_RX(atom_state=state,angle=theta)
+def local_HTH(atom_state:move.core.AtomState,indices, dag):
+    theta = pi/4 * (-1**dag)
+    state = global_RX(atom_state=atom_state,angle=theta)
     return state
