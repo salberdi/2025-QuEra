@@ -22,11 +22,11 @@ def local_CX(atom_state:move.core.AtomState,target_indices):
     return state
 
 @move.vmove()
-def global_RX(atom_state:move.core.AtomState,angle,target_indices):
+def global_RX(atom_state:move.core.AtomState,angle):
     state = move.GlobalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0)
     return state
 
 @move.vmove()
-def local_RX(atom_state:move.core.AtomState,angle,target_indices):
+def local_RX(atom_state:move.core.AtomState,angle,indices):
     state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
     return state
