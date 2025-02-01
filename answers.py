@@ -21,7 +21,6 @@ def answer_1b():
     state = move.GlobalCZ(atom_state=state)
     state.gate[[2]] = move.Move(state.gate[[1]])
     state = local_H(state=state,indices=[2])
-    state.storage[[0,1,2]] = move.Move(state.gate[[0,2,3]])
     return state
 
 @move.vmove()
