@@ -27,33 +27,34 @@ def global_RX(atom_state:move.core.AtomState,angle):
     return state
 
 @move.vmove()
-def local_HTH(atom_state:move.core.AtomState,indices, pos):
-    theta = pi/4
-    if not pos:
-        theta *= -1
-    state = global_RX(state, theta)
-    return state
-
-@move.vmove()
 def local_RX(atom_state:move.core.AtomState,angle,indices):
     state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
     return state
 
 @move.vmove()
 def local_T(state:move.core.AtomState,indices):
-    state = mode.LocalRz(atom_state=state,phi=pi/4,indices=indices)
+    state = move.LocalRz(atom_state=state,phi=pi/4,indices=indices)
     return state
 
 @move.vmove()
 def global_T(state:move.core.AtomState):
-    state = mode.GlobalRz(atom_state=state,phi=pi/4)
+    state = move.GlobalRz(atom_state=state,phi=pi/4)
+    return state
 
 @move.vmove()
 def local_S(state:move.core.AtomState,indices):
-    state = mode.LocalRz(atom_state=state,phi=pi/2,indices=indices)
+    state = move.LocalRz(atom_state=state,phi=pi/2,indices=indices)
     return state
 
 @move.vmove()
 def global_S(state:move.core.AtomState):
-    state = mode.GlobalRz(atom_state=state,phi=pi/2)
+    state = move.GlobalRz(atom_state=state,phi=pi/2)
+    return state
+
+@move.vmove()
+def local_HTH(atom_state:move.core.AtomState,indices, pos):
+    theta = pi/4
+    if not pos:
+        theta *= -1
+    state = global_RX(atom_state=state,angle=theta)
     return state
