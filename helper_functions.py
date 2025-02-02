@@ -3,7 +3,7 @@ from numpy import pi
 
 @move.vmove()
 def global_H(atom_state:move.core.AtomState):
-    state = move.GlobalXY(atom_state=atom_state,x_exponent=-pi/2,axis_phase_exponent=1.0)
+    state = move.GlobalXY(atom_state=atom_state,x_exponent=-pi/2,axis_phase_exponent=pi/2)
     state = move.GlobalXY(atom_state=state,x_exponent=pi,axis_phase_exponent=0.0)
     return state
 
