@@ -3,7 +3,7 @@ from bloqade import move
 from matplotlib.animation import FuncAnimation, PillowWriter
 from numpy import pi
 from helper_functions import *
-from answers import *
+# from answers import *
 
 @move.vmove()
 def main():

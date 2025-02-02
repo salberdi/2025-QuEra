@@ -7,7 +7,7 @@ from answers import *
 
 @move.vmove()
 def main():
-    state = answer_1b()
+    state = answer_2()
     
     move.Execute(state)
 
@@ -24,13 +24,34 @@ include "qelib1.inc";
 qreg q[3];
 
 
+h q[2];
 
-ccx q[0],q[1],q[2];
+// Operation: CRz(0.5π)(q(1), q(2))
+cx q[1],q[2];
+u3(0,pi*1.25,pi*0.5) q[2];
+cx q[1],q[2];
+u3(0,pi*1.75,pi*0.5) q[2];
+
+// Operation: CRz(0.25π)(q(0), q(2))
+cx q[0],q[2];
+u3(0,pi*1.375,pi*0.5) q[2];
+cx q[0],q[2];
+u3(0,pi*1.625,pi*0.5) q[2];
+
+h q[1];
+
+// Operation: CRz(0.5π)(q(0), q(1))
+cx q[0],q[1];
+u3(0,pi*1.25,pi*0.5) q[1];
+cx q[0],q[1];
+u3(0,pi*1.75,pi*0.5) q[1];
+
+h q[0];
 """
 
 scorer = MoveScorer(main, expected_qasm)
+animation = scorer.animate()
+animation.save("animation.gif", writer=PillowWriter(fps=1))
 score = scorer.score()
 print(score)
 
-animation = scorer.animate()
-animation.save("animation.gif", writer=PillowWriter(fps=1))
