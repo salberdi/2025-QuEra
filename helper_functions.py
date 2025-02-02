@@ -9,9 +9,9 @@ def global_H(atom_state:move.core.AtomState):
 
 @move.vmove()
 def local_H(atom_state:move.core.AtomState,indices):
-    state = move.GlobalXY(atom_state=atom_state,x_exponent=-pi/4,axis_phase_exponent=pi/2)
+    state = move.GlobalXY(atom_state=atom_state,x_exponent=pi/4,axis_phase_exponent=pi/2)
     state = move.LocalRz(atom_state=state,phi=pi,indices=indices)
-    state = move.GlobalXY(atom_state=state,x_exponent=pi/4,axis_phase_exponent=pi/2)
+    state = move.GlobalXY(atom_state=state,x_exponent=-pi/4,axis_phase_exponent=pi/2)
     return state
 
 @move.vmove()
