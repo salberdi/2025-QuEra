@@ -46,4 +46,4 @@ score = scorer.score()
 print(score)
 
 animation = scorer.animate()
-animation.save("animation_2.gif", writer=PillowWriter(fps=1))
+animation.save("animation_4.gif", writer=PillowWriter(fps=1))

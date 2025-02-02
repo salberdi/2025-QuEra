@@ -54,12 +54,15 @@ def answer_2():
     state = move.Init(qubits=[q[0],q[1],q[2]], indices=[0,1,2])
     state.gate[[0,2,3]] = move.Move(state.storage[[0,1,2]])
     state = local_H(atom_state = state, indices = [3])
-    state = local_CS(atom_state=state,indices=[2,3],target=[3])
+    #state = local_CS(atom_state=state,indices=[2,3],target=[3])
+    state = local_CP(atom_state=state,phi = pi*.5,indices=[2,3],target =[3],control = [2])
     state.gate[[1]] = move.Move(state.gate[[3]])
-    state = local_CT(atom_state=state, indices=[0,1],target=[1])
+    #state = local_CT(atom_state=state, indices=[0,1],target=[1])
+    state = local_CP(atom_state=state,phi = pi*.25,indices=[0,1],target =[1],control = [0])
     state = local_H(atom_state = state, indices = [2])
     state.gate[[3]] = move.Move(state.gate[[0]])
-    state = local_CS(atom_state = state, indices = [2,3], target=[2])
+    #state = local_CS(atom_state = state, indices = [2,3], target=[2])
+    state = local_CP(atom_state=state,phi = pi*.5,indices=[2,3],target =[2],control = [3])
     state = local_H(atom_state=state, indices=[3])
 
     return state

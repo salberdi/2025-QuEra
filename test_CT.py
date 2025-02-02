@@ -5,13 +5,14 @@ from numpy import pi
 from helper_functions import *
 # from answers import *
 
+
 @move.vmove()
 def main():
     q = move.NewQubitRegister(2)
 
     state = move.Init(qubits=[q[0],q[1]], indices=[0,1])
     state.gate[[0,1]] = move.Move(state.storage[[0,1]])
-    state = local_CP(atom_state=state,phi = pi*.5,indices=[0,1],target =[1],control = [0])
+    state = local_CP(atom_state=state,phi = pi*.25,indices=[0,1],target =[1],control = [0])
     
     
     move.Execute(state)
@@ -28,11 +29,11 @@ include "qelib1.inc";
 // Qubits: [q(0), q(1)]
 qreg q[2];
 
-// Operation: CRz(.5π)(q(0), q(1))
+// Operation: CRz(0.25π)(q(0), q(1))
 cx q[0],q[1];
-u3(0,pi*1.25,pi*0.5) q[1];
+u3(0,pi*1.375,pi*0.5) q[1];
 cx q[0],q[1];
-u3(0,pi*1.75,pi*0.5) q[1];
+u3(0,pi*1.625,pi*0.5) q[1];
 """
 
 scorer = MoveScorer(main, expected_qasm)
