@@ -74,8 +74,38 @@ def answer_3():
 
 @move.vmove()
 def answer_4():
-    return 0
+    q = move.NewQubitRegister(9)
+    state = move.Init(qubits=[q[0],q[3],q[6],q[4],q[7],q[1],q[5],q[8],q[2]], indices=[0,1,2,3,4,5,6,7,8])
+    state.gate[[0,1,2,4,6,8,10,12,14]] = move.Move(state.storage[[0,1,2,3,4,5,6,7,8]])
+    state = local_H(state,[1,2])
+    state = move.GlobalCZ(state)
+    state.gate[[3]] = move.Move(state.gate[[0]])
+    state = move.GlobalCZ(state)
+    state = local_H(state,[3,4,6,8])
+    state.gate[[5,7,9]] = move.Move(state.gate[[1,2,3]])
+    state = move.GlobalCZ(state)
+    state = local_H(state,[4,6,8,10,12,14])
+    state.gate[[11,13,15]] = move.Move(state.gate[[5,7,9]])
+    state = move.GlobalCZ(state)
+    state = local_H(state,[10,12,14])
+    return state
 
 @move.vmove()
 def answer_5():
-    return 0
+    q = move.NewQubitRegister(7)
+    state = move.Init(qubits=[q[0],q[1],q[2],q[4],q[5],q[6],q[3]], indices=[0,1,2,3,4,5,6])
+    state.gate[[0,1,4,5,8,9,12]] = move.Move(state.storage[[0,1,2,3,4,5,6]])
+    state = local_H(state,[0,1,4,5,8,12])
+    state = move.GlobalCZ(state)
+    state.gate[[5,6,13]] = move.Move(state.gate[[0,5,8]])
+    state = move.GlobalCZ(state)
+    state.gate[[6,8]] = move.Move(state.gate[[5,6]])
+    state.gate[[0]] = move.Move(state.gate[[13]])
+    state = move.GlobalCZ(state)
+    state = local_H(state,[9])
+    state.gate[[2,8,13]] = move.Move(state.gate[[1,4,8]])
+    state = move.GlobalCZ(state)
+    state.gate[[3,7]] = move.Move(state.gate[[9,12]])
+    state = move.GlobalCZ(state)
+    state = local_H(state,[0,3,6,13])
+    return state
