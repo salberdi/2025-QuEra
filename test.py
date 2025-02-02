@@ -62,3 +62,6 @@ cx q[2],q[1];
 scorer = MoveScorer(main, expected_qasm)
 score = scorer.score()
 print(score)
+
+animation = scorer.animate()
+animation.save("animation.gif", writer=PillowWriter(fps=1))
