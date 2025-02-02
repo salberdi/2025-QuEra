@@ -61,7 +61,6 @@ def local_HTH(atom_state:move.core.AtomState,indices, dag=False) -> move.core.At
 
 
 @move.vmove()
-<<<<<<< HEAD
 def local_CP(atom_state:move.core.AtomState,phi,indices,target,control)-> move.core.AtomState:
     state = move.LocalRz(atom_state,phi*0.5,indices)
     state = local_H(state,target)
@@ -69,24 +68,47 @@ def local_CP(atom_state:move.core.AtomState,phi,indices,target,control)-> move.c
     state = move.LocalXY(state, -phi*0.5,phi*0.0,target)
     state = move.GlobalCZ(atom_state=state)
     state = local_H(state,target)
-=======
+
+@move.vmove()
 def local_CS(atom_state:move.core.AtomState,indices,target) -> move.core.AtomState:
     state = local_CX(atom_state,target_indices=target)
-    state = move.LocalXY(state,pi*1.25,pi*.5,indices=target)
+
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(0.0 + 1.0),indices=indices)
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(1.25 + 1.0),indices=indices)
+
+    # state = move.LocalXY(state,pi*1.25,pi*.5,indices=target)
+    
     state = local_CX(state,target_indices=target)
-    state = move.LocalXY(state,pi*1.75,pi*.5,indices=target)
->>>>>>> 00a2321f06e938bae7bd9d1af48209df18e6c64c
+
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(0.0 + 1.0),indices=indices)
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(1.75 + 1.0),indices=indices)
+    
+    # state = move.LocalXY(state,pi*1.75,pi*.5,indices=target)
     return state
 
 @move.vmove()
 def local_CT(atom_state:move.core.AtomState,indices,target) -> move.core.AtomState:
     state = local_CX(atom_state,target_indices=target)
-    state = move.LocalXY(state,pi*1.375,pi*.5,indices=target)
+
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(0.0 + 1.0),indices=indices)
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(1.375 + 1.0),indices=indices)
+
+    # state = move.LocalXY(state,pi*1.375,pi*.5,indices=target)
     state = local_CX(state,target_indices=target)
-    state = move.LocalXY(state,pi*1.625,pi*.5,indices=target)
 
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(0.0 + 1.0),indices=indices)
+    state = move.LocalXY(state,pi*.5,0.0,indices=target) 
+    state = move.LocalRz(atom_state=state,phi=pi*(1.625 + 1.0),indices=indices)
+
+    # state = move.LocalXY(state,pi*1.625,pi*.5,indices=target)
     return state
-
 # // Operation: CRz(0.5π)(q(1), q(2))
 # cx q[1],q[2];
 # u3(0,pi*1.25,pi*0.5) q[2];
