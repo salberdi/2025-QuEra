@@ -30,3 +30,6 @@ ccx q[0],q[1],q[2];
 scorer = MoveScorer(main, expected_qasm)
 score = scorer.score()
 print(score)
+
+animation = scorer.animate()
+animation.save("animation.gif", writer=PillowWriter(fps=1))
