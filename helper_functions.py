@@ -3,7 +3,7 @@ from numpy import pi
 
 @move.vmove()
 def global_H(atom_state:move.core.AtomState):
-    state = move.GlobalXY(atom_state=atom_state,x_exponent=-pi/2,axis_phase_exponent=pi)
+    state = move.GlobalXY(atom_state=atom_state,x_exponent=-pi/2,axis_phase_exponent=1.0)
     state = move.GlobalXY(atom_state=state,x_exponent=pi,axis_phase_exponent=0.0)
     return state
 
@@ -28,7 +28,7 @@ def global_RX(atom_state:move.core.AtomState,angle):
 
 @move.vmove()
 def local_RX(atom_state:move.core.AtomState,angle,indices):
-    state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
+    state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0.0,indices=indices)
     return state
 
 @move.vmove()

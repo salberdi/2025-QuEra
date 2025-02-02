@@ -7,7 +7,7 @@ from answers import *
 
 @move.vmove()
 def main():
-    state = answer_1()
+    state = answer_1b()
     
     move.Execute(state)
 
@@ -34,8 +34,8 @@ ccx q[0],q[1],q[2];
 """
 
 scorer = MoveScorer(main, expected_qasm)
-score = scorer.score()
-print(score)
+# score = scorer.score()
+# print(score)
 
 animation = scorer.animate()
 animation.save("animation.gif", writer=PillowWriter(fps=1))
