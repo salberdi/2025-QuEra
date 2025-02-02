@@ -7,7 +7,12 @@ from answers import *
 
 @move.vmove()
 def main():
-    state = answer_1b()
+    q = move.NewQubitRegister(2)
+
+    state = move.Init(qubits=[q[0],q[1]], indices=[0,1])
+    state.gate[[0,1]] = move.Move(state.storage[[0,1]])
+    state = local_CP(atom_state=state,phi = pi*.25,indices=[0,1],target =[1],control = [0])
+    
     
     move.Execute(state)
 
@@ -20,22 +25,23 @@ OPENQASM 2.0;
 include "qelib1.inc";
 
 
-// Qubits: [q(0), q(1), q(2)]
-qreg q[3];
+// Qubits: [q(0), q(1)]
+qreg q[2];
 
-<<<<<<< HEAD
-cz q[0],q[1];
-cx q[2],q[1];
-=======
+rz (0.39269908169872414) q[0];
+rz (0.39269908169872414) q[1];
+
+cx q[0],q[1];
 
 
-ccx q[0],q[1],q[2];
->>>>>>> 48a841149cd84dfde411bae25132e138ca5c4ea3
+rz (-0.39269908169872414) q[1];
+
+cx q[0],q[1];
 """
 
 scorer = MoveScorer(main, expected_qasm)
-# score = scorer.score()
-# print(score)
+score = scorer.score()
+print(score)
 
 animation = scorer.animate()
 animation.save("animation.gif", writer=PillowWriter(fps=1))

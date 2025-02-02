@@ -16,6 +16,7 @@ def answer_1a():
 def answer_1b():
     q = move.NewQubitRegister(3)
 
+
     state = move.Init(qubits=[q[0], q[1], q[2]], indices=[0, 1, 2])
     
     state.gate[[2,1,0]] = move.Move(state.storage[[0,1,2]])
@@ -34,10 +35,8 @@ def answer_1b():
     state = move.GlobalCZ(atom_state=state)
     state = move.LocalXY(atom_state=state,x_exponent=pi*.25,axis_phase_exponent=0,indices=[3])
 
-state.gate[[4,5]] = move.Move(state.gate[[0,2]])
-
-    
-
+    state.gate[[4,5]] = move.Move(state.gate[[0,2]])
+        
     return state
 
 
