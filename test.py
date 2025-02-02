@@ -7,7 +7,7 @@ from answers import *
 
 @move.vmove()
 def main():
-    state = answer_1a()
+    state = answer_1()
     
     move.Execute(state)
 
@@ -23,8 +23,14 @@ include "qelib1.inc";
 // Qubits: [q(0), q(1), q(2)]
 qreg q[3];
 
+<<<<<<< HEAD
 cz q[0],q[1];
 cx q[2],q[1];
+=======
+
+
+ccx q[0],q[1],q[2];
+>>>>>>> 48a841149cd84dfde411bae25132e138ca5c4ea3
 """
 
 scorer = MoveScorer(main, expected_qasm)

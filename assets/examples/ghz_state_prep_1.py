@@ -1,4 +1,4 @@
-import math
+ import math
 from bloqade import move
 from kirin.passes import aggressive
 from iquhack_scoring import MoveScorer
