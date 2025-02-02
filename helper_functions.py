@@ -28,7 +28,7 @@ def global_RX(atom_state:move.core.AtomState,angle):
 
 @move.vmove()
 def local_RX(atom_state:move.core.AtomState,angle,indices):
-    state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0,indices=indices)
+    state = move.LocalXY(atom_state=atom_state,x_exponent=angle,axis_phase_exponent=0.0,indices=indices)
     return state
 
 @move.vmove()
